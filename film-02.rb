@@ -1,14 +1,18 @@
-# Think of a documentary, a drama, a comedy, and a dramedy. Store the titles of these films in variables. Ask the user if they enjoy the following genres:
+# Let's take a different approach to film recommendations:
+
+# create the same variables containing your potential film recommendations and then ask the user to rate their appreciation for:
 
 # 1. documentaries
 # 2. dramas
-# 3. comedies.
+# 3. comedies
 
-# If they answer yes to documentaries, display a message recommending the documentary to them.
-# If they answer no to documentaries but yes to dramas and comedies, recommend the dramedy.
-# If they answer yes to only dramas, recommend the drama.
-# If they say yes to only comedies, recommend the comedy.
-# If they answer no to all three, recommend a good book instead.
+# on a scale from one to five.
+
+# If they rate documentaries four or higher, recommend the documentary.
+# If they rate documentaries 3 or lower but both comedies and dramas 4 or higher, recommend the dramedy.
+# If they rate only dramas 4 or higher, recommend the drama.
+# If they rate just comedies 4 or higher, recommend the comedy.
+# Otherwise, recommend a good book.
 
 ############ A LIST OF FILMS #############
 # Documentary Film
@@ -60,26 +64,27 @@ answer03 = gets.chomp
 
 def movie_selection(answer01, answer02, answer03)
   # documentaries only
-  if answer01 == "yes" && answer02 == "no" && answer03 == "no"
+  if answer01 >= 4 && answer02 < 4 && answer03 < 4
     puts "Here are five films I would recommend you to watch: #{doc_film}"
 
   # Dramedy only
-  elsif answer01 == "no" && answer02 == "yes" && answer03 == "yes"
+  elsif answer01 <4 && answer02 >= 4 && answer03 >= 4
     puts "Here are the five films I would recommend you to watch: #{dramedy_film}"
 
   # Drama only
-  elsif answer01 == "no" && answer02 == "yes" && answer03 == "no"
+  elsif answer01 < 4 && answer02 >= 4 && answer03 < 4
     puts "Here are five films I would recommend you to watch: #{drama_film}"
 
   # Comedy Only
-  elsif answer01 == "no" && answer02 == "no" && answer03 == "yes"
+  elsif answer01 < 4 && answer02 < 4 && answer03 >= 4
     puts "Here are the five films I would recommend you to watch: #{comedy_film}"
 
   # ALL FILMS
-  elsif answer01 == "yes" && answer02 == "yes" && answer03 == "yes"
+  elsif answer01 >= 4 && answer02 >= 4 && answer03 >= 4
     puts "#{doc_film}, #{drama_film},#{dramedy_film}, #{comedy_film}"
 
-  else answer01 == "no" && answer02 == "no" && answer03 == "no"
+  # Otherwise, recommend a book
+  else
     puts "If you don't like these genres, then I would recommend reading a novel like Stephen King's IT"
   end
 
